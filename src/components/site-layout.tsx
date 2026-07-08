@@ -22,8 +22,8 @@ function Logo({ large = false }: { large?: boolean }) {
 function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-6 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-5 sm:px-6 lg:px-8">
         <Logo large />
         <nav className="hidden items-center gap-1 md:flex">
           {nav.map((item) => (
@@ -92,12 +92,23 @@ function Header() {
 function Footer() {
   return (
     <footer className="border-t border-border/60 bg-ink">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-4 lg:px-8">
-        <div className="lg:col-span-2">
-          <Logo />
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1.35fr)_max-content_max-content] lg:gap-x-10 lg:px-8">
+        <div className="lg:col-span-1">
+          <Logo large />
           <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Design, consultancy & execution for acoustics, architectural lighting and
-            visual systems. Official dealer & consultant for MADRIX lighting control.
+            Design, consultancy & execution for acoustics, architectural lighting and visual systems.
+          </p>
+        </div>
+        <div className="lg:col-span-1">
+          <a href="https://www.madrix.com" target="_blank" rel="noreferrer" aria-label="MADRIX">
+            <img
+              src="/assets/MADRIX_Logo_whiteTypo_onBlack_noBg-768x288.png"
+              alt="MADRIX logo"
+              className="h-14 w-auto object-contain"
+            />
+          </a>
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+            Official dealer & consultant for MADRIX lighting control — pixel-mapped LED control supporting DMX512, DVI, and Art-Net.
           </p>
         </div>
         <div>

@@ -116,10 +116,6 @@ function Projects() {
                     {p.title}
                   </h2>
                   <p className="mt-4 text-muted-foreground">{p.desc}</p>
-                  <div className="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary">
-                    Case study on request
-                    <ArrowUpRight className="h-4 w-4" />
-                  </div>
                 </div>
               </article>
             ))}
