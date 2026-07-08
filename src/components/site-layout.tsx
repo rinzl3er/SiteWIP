@@ -10,21 +10,11 @@ const nav = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-function Logo() {
+function Logo({ large = false }: { large?: boolean }) {
+  const imgClass = large ? "h-14 w-auto shrink-0 object-contain" : "h-11 w-auto shrink-0 object-contain";
   return (
-    <Link to="/" className="group flex items-center gap-3">
-      <div className="relative grid h-11 w-11 shrink-0 place-items-center border-2 border-primary bg-ink">
-        <span className="font-mono text-lg font-black text-primary">CP</span>
-        <span className="absolute -bottom-1 -right-1 h-2 w-2 bg-primary transition-transform group-hover:scale-150" />
-      </div>
-      <div className="hidden min-w-0 flex-col leading-none sm:flex">
-        <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
-          Chintan Patel
-        </span>
-        <span className="mt-1 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-          Acoustics · Lighting · AV
-        </span>
-      </div>
+    <Link to="/" aria-label="Chintan Patel — Home" className="group flex items-center gap-3">
+      <img src="/assets/cpalslogo.png" alt="Chintan Patel logo" className={imgClass} />
     </Link>
   );
 }
@@ -33,8 +23,8 @@ function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <Logo />
+      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-6 sm:px-6 lg:px-8">
+        <Logo large />
         <nav className="hidden items-center gap-1 md:flex">
           {nav.map((item) => (
             <Link
@@ -65,7 +55,7 @@ function Header() {
         </nav>
         <button
           onClick={() => setOpen((v) => !v)}
-          className="grid h-11 w-11 place-items-center border border-border text-primary md:hidden"
+          className="grid h-12 w-12 place-items-center border border-border text-primary md:hidden"
           aria-label="Toggle navigation"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

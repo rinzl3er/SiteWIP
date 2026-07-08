@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { SiteLayout, PageHeader } from "@/components/site-layout";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
+// Images are served from `public/assets`
+const g1 = "/assets/gallery-1.jpg";
+const g2 = "/assets/gallery-2.jpg";
+const g3 = "/assets/gallery-3.jpg";
+const g4 = "/assets/gallery-4.jpg";
+const g5 = "/assets/gallery-5.jpg";
+const g6 = "/assets/gallery-6.jpg";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
