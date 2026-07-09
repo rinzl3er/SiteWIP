@@ -22,29 +22,6 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const principles = [
-  {
-    n: "01",
-    t: "Design first",
-    d: "Every project begins on paper — acoustic modelling, lighting layouts and AV signal flow before a single cable is pulled.",
-  },
-  {
-    n: "02",
-    t: "Independent consultancy",
-    d: "Brand-agnostic recommendations. We specify what your project needs, not what a distributor wants to move.",
-  },
-  {
-    n: "03",
-    t: "Execution accountability",
-    d: "The same team that designs your system also installs, tunes and commissions it. One point of ownership.",
-  },
-  {
-    n: "04",
-    t: "Long tail of support",
-    d: "Systems evolve. We stay on call for firmware, tuning and expansion — years after handover.",
-  },
-];
-
 const capabilities = [
   "Room acoustic modelling & treatment",
   "Sound isolation & noise control",
@@ -62,7 +39,7 @@ function About() {
       <PageHeader
         eyebrow="About the studio"
         title="A studio for spaces that sound and look their best."
-        intro="Chintan Patel is an independent design and integration studio working at the intersection of acoustics, architectural lighting and audio-visual systems. We work with architects, hospitality groups, homeowners and venues across India."
+        intro="We are an independent design and integration studio working at the intersection of acoustics, architectural lighting and audio-visual systems. We work with architects, hospitality groups, homeowners and venues across India."
       />
 
       <section className="py-20 lg:py-28">
@@ -81,12 +58,12 @@ function About() {
                 systems that don't quite know each other.
               </p>
               <p>
-                We work differently. One studio owns the whole environment — the room's
+                We work differently. One studio owns the whole environment the room's
                 acoustic behaviour, the way light moves through it, and the AV systems
-                that live inside it — so every layer supports the others.
+                that live inside it so every layer supports the others.
               </p>
               <p>
-                As the official dealer and consultant for <span className="text-primary">MADRIX</span>,
+                With <span className="text-primary">MADRIX</span> as our official dealer and consultant,
                 we specialise in software-driven LED lighting control alongside our
                 acoustic and AV work.
               </p>
@@ -105,26 +82,6 @@ function About() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-border/60 bg-ink py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
-            / How we work
-          </span>
-          <h2 className="mt-4 text-3xl font-black sm:text-4xl">Four principles.</h2>
-          <div className="mt-12 grid gap-px bg-border sm:grid-cols-2">
-            {principles.map((p) => (
-              <div key={p.n} className="bg-ink p-8 lg:p-10">
-                <div className="font-mono text-sm text-primary">{p.n}</div>
-                <h3 className="mt-4 text-2xl font-bold">{p.t}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {p.d}
-                </p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

@@ -32,13 +32,6 @@ const services = [
   },
 ];
 
-const stats = [
-  { k: "18+", v: "Years of practice" },
-  { k: "240+", v: "Projects delivered" },
-  { k: "9", v: "Cities across India" },
-  { k: "MADRIX", v: "Official dealer" },
-];
-
 function Home() {
   return (
     <SiteLayout>
@@ -91,24 +84,6 @@ function Home() {
           </div>
         </div>
 
-        {/* Stats strip */}
-        <div className="relative border-y border-border/60 bg-ink/80 backdrop-blur">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 divide-border/60 px-4 sm:px-6 md:grid-cols-4 md:divide-x lg:px-8">
-            {stats.map((s, i) => (
-              <div
-                key={s.v}
-                className={`px-2 py-6 ${i < 2 ? "border-b border-border/60 md:border-b-0" : ""}`}
-              >
-                <div className="font-mono text-3xl font-bold text-primary sm:text-4xl">
-                  {s.k}
-                </div>
-                <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                  {s.v}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* SERVICES */}
