@@ -33,11 +33,53 @@ const capabilities = [
   "Line-array & distributed audio systems",
 ];
 
+const founderDetails = [
+  {
+    title: "Introduction",
+    body: "Electrical engineer with experience in acoustics, sound and lighting. Chintan Patel is a one-stop consultant for audio/video, lighting design and acoustic works across a wide range of projects.",
+  },
+  {
+    title: "Expertise",
+    points: [
+      "Audio/video consulting",
+      "Lighting designs and setups",
+      "Acoustic works for studios, clubs, restaurants, pubs, bars and home theatres",
+    ],
+  },
+  {
+    title: "Design Philosophy",
+    body: "He focuses on balancing detail, character and fundamentals, while working closely with architects, sound system and lighting manufacturers or dealers, and the installation team to achieve the best integration of technologies.",
+  },
+  {
+    title: "Industry Experience",
+    body: "His projects range from home theatres to restaurants, clubs, hotels and luxury homes, moving between minimalist, rich ornate classic and vibrant styles.",
+  },
+];
+
+const founderHighlights = [
+  {
+    title: "Acoustics",
+    text: "Acoustic works for studios, clubs, restaurants, pubs, bars and home theatres.",
+  },
+  {
+    title: "Architectural Lighting",
+    text: "Lighting designs and setups for spaces that need a strong visual character.",
+  },
+  {
+    title: "AV Integration",
+    text: "Audio/video consulting and system integration coordinated with the installation team.",
+  },
+  {
+    title: "MADRIX Programming",
+    text: "Software-driven LED lighting control with MADRIX for pixel-mapped lighting work.",
+  },
+];
+
 function About() {
   return (
     <SiteLayout>
       <PageHeader
-        eyebrow="About the studio"
+        eyebrow="About us"
         title="A studio for spaces that sound and look their best."
         intro="We are an independent design and integration studio working at the intersection of acoustics, architectural lighting and audio-visual systems. We work with architects, hospitality groups, homeowners and venues across India."
       />
@@ -64,7 +106,7 @@ function About() {
               </p>
               <p>
                 With <span className="text-primary">MADRIX</span> as our official dealer and consultant,
-                we specialise in software-driven LED lighting control alongside our
+                we specialise in software driven LED lighting control alongside our
                 acoustic and AV work.
               </p>
             </div>
@@ -82,6 +124,74 @@ function About() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border/60 bg-ink py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:items-start lg:gap-16">
+            <div className="group relative overflow-hidden rounded-2xl border border-primary/40 bg-background shadow-[0_24px_70px_rgba(0,0,0,0.45)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
+              <img
+                src="/assets/Chintanportrait.jpg"
+                alt="Chintan Patel portrait"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </div>
+
+            <div className="space-y-10">
+              <div className="space-y-3">
+                <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
+                  Meet the Founder
+                </span>
+                <h2 className="text-3xl font-black leading-tight sm:text-4xl">
+                  Chintan Patel
+                </h2>
+                <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+                  Founder & Principal Consultant
+                </p>
+              </div>
+
+              <div className="grid gap-8">
+                {founderDetails.map((section) => (
+                  <section key={section.title} className="space-y-3">
+                    <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
+                      {section.title}
+                    </h3>
+                    {"body" in section ? (
+                      <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                        {section.body}
+                      </p>
+                    ) : (
+                      <ul className="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2 sm:text-base">
+                        {section.points.map((point) => (
+                          <li key={point} className="flex items-start gap-3">
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </section>
+                ))}
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                {founderHighlights.map((item) => (
+                  <article
+                    key={item.title}
+                    className="border border-border bg-ink-soft p-5 transition-colors hover:border-primary/70"
+                  >
+                    <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {item.text}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

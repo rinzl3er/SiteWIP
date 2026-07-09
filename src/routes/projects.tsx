@@ -38,12 +38,136 @@ const videos = [
 ];
 
 const images = [
-  "/assets/gallery-1.jpg",
-  "/assets/gallery-2.jpg",
-  "/assets/gallery-3.jpg",
-  "/assets/gallery-4.jpg",
-  "/assets/gallery-5.jpg",
-  "/assets/gallery-6.jpg",
+  {
+    image: "/Site images/8 Mad Men, Sambalpur A.jpeg",
+    venue: "8 Mad Men",
+    location: "Sambalpur",
+  },
+  {
+    image: "/Site images/Carpe Diem, Kolkata A.jpg",
+    venue: "Carpe Diem",
+    location: "Kolkata",
+  },
+  {
+    image: "/Site images/Clava, Jabalpur A.jpeg",
+    venue: "Clava",
+    location: "Jabalpur",
+  },
+  {
+    image: "/Site images/Hashtag, Siliguri A.jpg",
+    venue: "Hashtag",
+    location: "Siliguri",
+  },
+  {
+    image: "/Site images/Hashtag, Siliguri B.jpg",
+    venue: "Hashtag",
+    location: "Siliguri",
+  },
+  {
+    image: "/Site images/Mansion, Agra A.jpg",
+    venue: "Mansion",
+    location: "Agra",
+  },
+  {
+    image: "/Site images/Mansion, Agra B.jpg",
+    venue: "Mansion",
+    location: "Agra",
+  },
+  {
+    image: "/Site images/NYX, Guwahati A.jpg",
+    venue: "NYX",
+    location: "Guwahati",
+  },
+  {
+    image: "/Site images/NYX, Guwahati B.jpg",
+    venue: "NYX",
+    location: "Guwahati",
+  },
+  {
+    image: "/Site images/NYX, Guwahati C.jpg",
+    venue: "NYX",
+    location: "Guwahati",
+  },
+  {
+    image: "/Site images/Playboy Beer Garden, Ludhiana A.jpeg",
+    venue: "Playboy Beer Garden",
+    location: "Ludhiana",
+  },
+  {
+    image: "/Site images/Playboy Club Mumbai A.jpg",
+    venue: "Playboy Club",
+    location: "Mumbai",
+  },
+  {
+    image: "/Site images/Playboy Club Mumbai B.jpg",
+    venue: "Playboy Club",
+    location: "Mumbai",
+  },
+  {
+    image: "/Site images/Poddar House, Mumbai A.jpg",
+    venue: "Poddar House",
+    location: "Mumbai",
+  },
+  {
+    image: "/Site images/Poddar House, Mumbai B.jpg",
+    venue: "Poddar House",
+    location: "Mumbai",
+  },
+  {
+    image: "/Site images/Poddar House, Mumbai C.jpg",
+    venue: "Poddar House",
+    location: "Mumbai",
+  },
+  {
+    image: "/Site images/Poddar House, Mumbai D.jpg",
+    venue: "Poddar House",
+    location: "Mumbai",
+  },
+  {
+    image: "/Site images/Privee, New Delhi A.jpg",
+    venue: "Privee",
+    location: "New Delhi",
+  },
+  {
+    image: "/Site images/Sea View Pearl, Dapoli A.jpg",
+    venue: "Sea View Pearl",
+    location: "Dapoli",
+  },
+  {
+    image: "/Site images/Sea View Pearl, Dapoli B.jpg",
+    venue: "Sea View Pearl",
+    location: "Dapoli",
+  },
+  {
+    image: "/Site images/Sin City, Mumbai A.jpg",
+    venue: "Sin City",
+    location: "Mumbai",
+  },
+  {
+    image: "/Site images/TeryTree, Siliguri A.jpg",
+    venue: "TeryTree",
+    location: "Siliguri",
+  },
+  {
+    image: "/Site images/TeryTree, Siliguri B.jpg",
+    venue: "TeryTree",
+    location: "Siliguri",
+  },
+  {
+    image: "/Site images/TeryTree, Siliguri C.jpg",
+    venue: "TeryTree",
+    location: "Siliguri",
+  },
+  {
+    image: "/Site images/TeryTree, Siliguri D.jpg",
+    venue: "TeryTree",
+    location: "Siliguri",
+  },
+  {
+    image: "/Site images/Yellow Lights School for Performing Arts, Thane A.jpg",
+    venue: "Yellow Lights School for Performing Arts",
+    location: "Thane",
+  },
 ];
 
 function getEmbedUrl(url: string) {
@@ -59,7 +183,6 @@ function getEmbedUrl(url: string) {
 
   return "";
 }
-
 function Projects() {
   return (
     <SiteLayout>
@@ -73,40 +196,18 @@ function Projects() {
       <section className="pb-10">
         <div className="mx-auto flex max-w-7xl justify-center gap-4 px-6">
           <a
-            href="#images"
-            className="rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
-          >
-            📷 Image Gallery
-          </a>
-
-          <a
             href="#videos"
-            className="rounded-full border border-border px-6 py-3 font-medium transition hover:bg-muted"
+            className="rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
           >
             🎥 Video Gallery
           </a>
-        </div>
-      </section>
 
-      {/* Image Gallery */}
-      <section id="images" className="py-10">
-        <div className="mx-auto max-w-7xl px-6">
-          <h2 className="mb-8 text-3xl font-bold">Image Gallery</h2>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="overflow-hidden rounded-xl shadow-lg"
-              >
-                <img
-                  src={image}
-                  alt={`Project ${index + 1}`}
-                  className="h-72 w-full object-cover transition duration-300 hover:scale-105"
-                />
-              </div>
-            ))}
-          </div>
+          <a
+            href="#images"
+            className="rounded-full border border-border px-6 py-3 font-medium transition hover:bg-muted"
+          >
+            📷 Image Gallery
+          </a>
         </div>
       </section>
 
@@ -131,6 +232,40 @@ function Projects() {
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
                   />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Image Gallery */}
+      <section id="images" className="py-10">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="mb-8 text-3xl font-bold">Image Gallery</h2>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {images.map((project, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-xl shadow-lg"
+              >
+                <img
+                  src={project.image}
+                  alt={`${project.venue} - ${project.location}`}
+                  className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 transition-all duration-300 group-hover:opacity-100" />
+
+                <div className="absolute bottom-0 left-0 translate-y-6 p-5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <h3 className="text-lg font-semibold text-white">
+                    {project.venue}
+                  </h3>
+
+                  <p className="mt-1 text-sm text-white/80">
+                    📍 {project.location}
+                  </p>
                 </div>
               </div>
             ))}
