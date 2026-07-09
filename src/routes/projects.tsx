@@ -1,13 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
 import { SiteLayout, PageHeader } from "@/components/site-layout";
-// Images are served from `public/assets`
-const g1 = "/assets/gallery-1.jpg";
-const g2 = "/assets/gallery-2.jpg";
-const g3 = "/assets/gallery-3.jpg";
-const g4 = "/assets/gallery-4.jpg";
-const g5 = "/assets/gallery-5.jpg";
-const g6 = "/assets/gallery-6.jpg";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -16,108 +8,131 @@ export const Route = createFileRoute("/projects")({
       {
         name: "description",
         content:
-          "Selected acoustics, lighting and audio-visual projects — auditoriums, home theatres, studios, boardrooms and venues.",
+          "Watch installations, tuning sessions and completed acoustics, lighting and AV projects.",
       },
       { property: "og:title", content: "Projects — Chintan Patel" },
       {
         property: "og:description",
         content:
-          "A selection of acoustics, lighting and AV work from across India.",
+          "Video gallery showcasing acoustics, lighting, home theatre and AV installations.",
       },
     ],
   }),
   component: Projects,
 });
 
-const projects = [
-  {
-    img: g1,
-    year: "2024",
-    discipline: "Lighting · AV",
-    title: "Performance Hall — Mumbai",
-    desc: "Full stage lighting rig with pixel-mapped LED wash and a line-array PA tuned for spoken word and live music.",
-  },
-  {
-    img: g2,
-    year: "2024",
-    discipline: "Acoustics · AV",
-    title: "Private Home Theatre — Pune",
-    desc: "THX-inspired acoustic build with fabric-wrapped absorbers, low-frequency traps and a Dolby Atmos 7.2.4 system.",
-  },
-  {
-    img: g3,
-    year: "2023",
-    discipline: "Acoustics",
-    title: "Recording Studio — Ahmedabad",
-    desc: "Control room and live room design with tuned diffusion, isolated floating floor and integrated monitoring.",
-  },
-  {
-    img: g4,
-    year: "2023",
-    discipline: "Acoustics · Lighting",
-    title: "Cinema Auditorium — Surat",
-    desc: "Faceted acoustic ceiling and cove lighting scheme sequenced to pre-show programming via MADRIX.",
-  },
-  {
-    img: g5,
-    year: "2022",
-    discipline: "AV · Acoustics",
-    title: "Corporate Boardroom — Bangalore",
-    desc: "Ceiling mic array, laser projection, wall absorption panels and single-touch control for hybrid meetings.",
-  },
-  {
-    img: g6,
-    year: "2022",
-    discipline: "Lighting",
-    title: "Nightclub Lighting Rig — Goa",
-    desc: "Moving-head fixtures, laser and haze programmed and pixel-mapped through MADRIX for full-set automation.",
-  },
+const videos = [
+  "https://www.youtube.com/watch?v=kNJRmYJ9ruM",
+  "https://www.youtube.com/watch?v=Lubpz4J9-nw",
+  "https://www.youtube.com/watch?v=Qj-EpqxQZzI",
+  "https://www.youtube.com/watch?v=bhxlW1gYSCo",
+  "https://www.youtube.com/watch?v=wyJCqE11Vc4",
+  "https://www.youtube.com/watch?v=xtDlPFU3QrU",
+  "https://www.youtube.com/watch?v=6fEDYFbInlI",
+  "https://www.youtube.com/watch?v=wqueoSh76Ks",
+  "https://youtu.be/VlRLfoGH2Vg",
+  "https://www.youtube.com/watch?v=lmLkEd9wPUU",
+  "https://www.youtube.com/watch?v=DnXMBgXgYAg",
+  "https://www.youtube.com/watch?v=HMGml4fadBA",
+  "https://www.youtube.com/watch?v=JaM3jvKFK2M",
 ];
+
+const images = [
+  "/assets/gallery-1.jpg",
+  "/assets/gallery-2.jpg",
+  "/assets/gallery-3.jpg",
+  "/assets/gallery-4.jpg",
+  "/assets/gallery-5.jpg",
+  "/assets/gallery-6.jpg",
+];
+
+function getEmbedUrl(url: string) {
+  if (url.includes("youtu.be/")) {
+    const id = url.split("youtu.be/")[1].split("?")[0];
+    return `https://www.youtube.com/embed/${id}`;
+  }
+
+  if (url.includes("watch?v=")) {
+    const id = url.split("watch?v=")[1].split("&")[0];
+    return `https://www.youtube.com/embed/${id}`;
+  }
+
+  return "";
+}
 
 function Projects() {
   return (
     <SiteLayout>
       <PageHeader
-        eyebrow="Projects · 2022 – 2024"
-        title="A selection of recent work."
-        intro="Design, consultancy and execution across acoustics, architectural lighting and AV integration."
+        eyebrow="Projects"
+        title="Projects"
+        intro="Browse completed projects through our image and video galleries."
       />
 
-      <section className="py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-10 md:gap-14 lg:gap-16">
-            {projects.map((p, i) => (
-              <article
-                key={p.title}
-                className={`group grid gap-8 md:grid-cols-2 md:items-center ${
-                  i % 2 ? "md:[&>*:first-child]:order-2" : ""
-                }`}
+      {/* Navigation */}
+      <section className="pb-10">
+        <div className="mx-auto flex max-w-7xl justify-center gap-4 px-6">
+          <a
+            href="#images"
+            className="rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
+          >
+            📷 Image Gallery
+          </a>
+
+          <a
+            href="#videos"
+            className="rounded-full border border-border px-6 py-3 font-medium transition hover:bg-muted"
+          >
+            🎥 Video Gallery
+          </a>
+        </div>
+      </section>
+
+      {/* Image Gallery */}
+      <section id="images" className="py-10">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="mb-8 text-3xl font-bold">Image Gallery</h2>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {images.map((image, index) => (
+              <div
+                key={index}
+                className="overflow-hidden rounded-xl shadow-lg"
               >
-                <div className="relative overflow-hidden border border-border">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img
-                      src={p.img}
-                      alt={p.title}
-                      loading="lazy"
-                      width={1200}
-                      height={900}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="absolute left-0 top-0 bg-primary px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-primary-foreground">
-                    {p.year}
-                  </div>
+                <img
+                  src={image}
+                  alt={`Project ${index + 1}`}
+                  className="h-72 w-full object-cover transition duration-300 hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Video Gallery */}
+      <section id="videos" className="py-20">
+        <div className="mx-auto max-w-[1700px] px-6">
+          <h2 className="mb-8 text-3xl font-bold">Video Gallery</h2>
+
+          <div className="grid gap-8 lg:grid-cols-3">
+            {videos.map((video, index) => (
+              <div
+                key={index}
+                className="overflow-hidden rounded-2xl border border-border shadow-lg"
+              >
+                <div className="aspect-video">
+                  <iframe
+                    className="h-full w-full"
+                    src={getEmbedUrl(video)}
+                    title={`Project Video ${index + 1}`}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
                 </div>
-                <div className="min-w-0">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
-                    / {p.discipline}
-                  </span>
-                  <h2 className="mt-4 text-3xl font-black leading-tight sm:text-4xl">
-                    {p.title}
-                  </h2>
-                  <p className="mt-4 text-muted-foreground">{p.desc}</p>
-                </div>
-              </article>
+              </div>
             ))}
           </div>
         </div>
