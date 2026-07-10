@@ -1,11 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Volume2, Lightbulb, MonitorPlay, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Volume2, Lightbulb, MonitorPlay } from "lucide-react";
 import { SiteLayout } from "@/components/site-layout";
 // Images are served from `public/assets` — reference them by public paths
 const hero = "/assets/hero.jpg";
-const g1 = "/assets/gallery-1.jpg";
-const g2 = "/assets/gallery-2.jpg";
-const g4 = "/assets/gallery-4.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -120,56 +117,6 @@ function Home() {
                 </article>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURED WORK */}
-      <section className="border-t border-border/60 bg-ink py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
-                / Selected work
-              </span>
-              <h2 className="mt-4 text-4xl font-black sm:text-5xl">Recent projects</h2>
-            </div>
-            <Link
-              to="/projects"
-              className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary"
-            >
-              All projects
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              { img: g1, tag: "Auditorium", title: "Performance Hall Lighting" },
-              { img: g2, tag: "Residential", title: "Private Home Theatre" },
-              { img: g4, tag: "Cinema", title: "Acoustic Ceiling Design" },
-            ].map((p) => (
-              <article
-                key={p.title}
-                className="group relative overflow-hidden border border-border"
-              >
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    loading="lazy"
-                    width={1200}
-                    height={900}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/70 to-transparent p-6">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary">
-                    {p.tag}
-                  </span>
-                  <h3 className="mt-2 text-xl font-bold">{p.title}</h3>
-                </div>
-              </article>
-            ))}
           </div>
         </div>
       </section>
