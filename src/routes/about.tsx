@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SiteLayout, PageHeader } from "@/components/site-layout";
 
 export const Route = createFileRoute("/about")({
@@ -33,48 +33,6 @@ const capabilities = [
   "Line-array & distributed audio systems",
 ];
 
-const founderDetails = [
-  {
-    title: "Introduction",
-    body: "Electrical engineer with experience in acoustics, sound and lighting. Chintan Patel is a one-stop consultant for audio/video, lighting design and acoustic works across a wide range of projects.",
-  },
-  {
-    title: "Expertise",
-    points: [
-      "Audio/video consulting",
-      "Lighting designs and setups",
-      "Acoustic works for studios, clubs, restaurants, pubs, bars and home theatres",
-    ],
-  },
-  {
-    title: "Design Philosophy",
-    body: "He focuses on balancing detail, character and fundamentals, while working closely with architects, sound system and lighting manufacturers or dealers, and the installation team to achieve the best integration of technologies.",
-  },
-  {
-    title: "Industry Experience",
-    body: "His projects range from home theatres to restaurants, clubs, hotels and luxury homes, moving between minimalist, rich ornate classic and vibrant styles.",
-  },
-];
-
-const founderHighlights = [
-  {
-    title: "Acoustics",
-    text: "Acoustic works for studios, clubs, restaurants, pubs, bars and home theatres.",
-  },
-  {
-    title: "Architectural Lighting",
-    text: "Lighting designs and setups for spaces that need a strong visual character.",
-  },
-  {
-    title: "AV Integration",
-    text: "Audio/video consulting and system integration coordinated with the installation team.",
-  },
-  {
-    title: "MADRIX Programming",
-    text: "Software-driven LED lighting control with MADRIX for pixel-mapped lighting work.",
-  },
-];
-
 function About() {
   return (
     <SiteLayout>
@@ -105,7 +63,7 @@ function About() {
                 that live inside it so every layer supports the others.
               </p>
               <p>
-                With <span className="text-primary">MADRIX</span> as our official dealer and consultant,
+                With <span className="text-emerald-600">MADRIX</span> as our official dealer and consultant,
                 we specialise in software driven LED lighting control alongside our
                 acoustic and AV work.
               </p>
@@ -119,7 +77,7 @@ function About() {
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {capabilities.map((c) => (
                 <li key={c} className="flex items-start gap-3 text-sm text-foreground">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
                   <span>{c}</span>
                 </li>
               ))}
@@ -128,67 +86,108 @@ function About() {
         </div>
       </section>
 
+      {/* MEET THE FOUNDER */}
       <section className="border-t border-border/60 bg-ink py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:items-start lg:gap-16">
-            <div className="group relative overflow-hidden rounded-2xl border border-primary/40 bg-background shadow-[0_24px_70px_rgba(0,0,0,0.45)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(0,0,0,0.55)]">
+
+          {/* Eyebrow */}
+          <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
+            / Meet the Founder
+          </span>
+
+          <div className="mt-10 grid gap-12 lg:grid-cols-[420px_1fr] lg:gap-16 lg:items-start">
+
+            {/* Photo card with gradient overlay */}
+            <div className="group relative overflow-hidden rounded-2xl border border-primary/30 shadow-[0_24px_70px_rgba(0,0,0,0.55)]">
               <img
                 src="/assets/Chintanportrait.jpg"
                 alt="Chintan Patel portrait"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               />
-            </div>
-
-            <div className="space-y-10">
-              <div className="space-y-3">
-                <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
-                  Meet the Founder
-                </span>
-                <h2 className="text-3xl font-black leading-tight sm:text-4xl">
+              {/* Gradient overlay with name */}
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/80 to-transparent px-7 pb-7 pt-20">
+                <h2 className="text-3xl font-black leading-none tracking-tight">
                   Chintan Patel
                 </h2>
-                <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-                  Founder & Principal Consultant
+                <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.28em] text-primary/80">
+                  Founder &amp; Principal Consultant
                 </p>
               </div>
+            </div>
 
-              <div className="grid gap-8">
-                {founderDetails.map((section) => (
-                  <section key={section.title} className="space-y-3">
-                    <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
-                      {section.title}
-                    </h3>
-                    {"body" in section ? (
-                      <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-                        {section.body}
-                      </p>
-                    ) : (
-                      <ul className="grid gap-3 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2 sm:text-base">
-                        {section.points.map((point) => (
-                          <li key={point} className="flex items-start gap-3">
-                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </section>
-                ))}
+            {/* Right side content */}
+            <div className="flex flex-col gap-10">
+
+              {/* Bio blocks */}
+              <div className="grid gap-8 sm:grid-cols-2">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-primary/80">
+                    Introduction
+                  </p>
+                  <div className="mt-3 h-px w-8 bg-primary/40" />
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    Electrical engineer with experience in acoustics, sound and lighting.
+                    A one-stop consultant for audio/video, lighting design and acoustic
+                    works across a wide range of projects.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-primary/80">
+                    Design Philosophy
+                  </p>
+                  <div className="mt-3 h-px w-8 bg-primary/40" />
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    Balancing detail, character and fundamentals — working closely with
+                    architects, manufacturers and installation teams to achieve seamless
+                    integration of technologies.
+                  </p>
+                </div>
+
+                <div className="sm:col-span-2">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-primary/80">
+                    Industry Experience
+                  </p>
+                  <div className="mt-3 h-px w-8 bg-primary/40" />
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    Projects range from home theatres to restaurants, clubs, hotels and
+                    luxury homes — moving between minimalist, rich ornate classic and
+                    vibrant styles.
+                  </p>
+                </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                {founderHighlights.map((item) => (
-                  <article
-                    key={item.title}
-                    className="border border-border bg-ink-soft p-5 transition-colors hover:border-primary/70"
+              {/* Domain tiles */}
+              <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
+                {[
+                  {
+                    label: "Acoustics",
+                    desc: "Studios, clubs, restaurants, pubs, bars and home theatres.",
+                  },
+                  {
+                    label: "Architectural Lighting",
+                    desc: "Spaces that need a strong visual character and precise control.",
+                  },
+                  {
+                    label: "AV Integration",
+                    desc: "Audio/video consulting coordinated with the installation team.",
+                  },
+                  {
+                    label: "MADRIX",
+                    desc: "Software-driven pixel-mapped LED lighting control.",
+                  },
+                ].map((tile) => (
+                  <div
+                    key={tile.label}
+                    className="flex flex-col gap-2 rounded-xl border border-border bg-ink-soft p-5 transition-colors duration-300 hover:border-primary/50"
                   >
-                    <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {item.text}
+                    <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-primary">
+                      {tile.label}
                     </p>
-                  </article>
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                      {tile.desc}
+                    </p>
+                  </div>
                 ))}
               </div>
             </div>

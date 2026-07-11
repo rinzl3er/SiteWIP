@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, Lightbulb, MonitorPlay, Volume2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Lightbulb, MonitorPlay, Volume2 } from "lucide-react";
 import { useState } from "react";
 
 import { SiteLayout } from "@/components/site-layout";
@@ -18,14 +18,6 @@ const services = [
     desc: "Room acoustics, sound isolation and noise control from home theatres to auditoriums, studios and worship spaces.",
     overview:
       "We design acoustic environments that enhance clarity, comfort, and performance. Whether it is a home theatre, auditorium, recording studio, worship space, or commercial facility, every solution is engineered to deliver balanced sound, effective noise control, and seamless integration with the architectural design. Our goal is to create spaces where sound performs exactly as intended.",
-    services: [
-      "Auditorium Acoustics",
-      "Home Theatre Design",
-      "Recording Studio Design",
-      "Worship Space Acoustics",
-      "Sound Isolation & Noise Control",
-      "Acoustic Measurements & Testing"
-    ],
   },
   {
     icon: Lightbulb,
@@ -34,16 +26,6 @@ const services = [
     desc: "Architectural, decorative and pixel-mapped LED lighting design powered by MADRIX control systems.",
     overview:
       "Lighting is more than illumination—it shapes atmosphere, highlights architecture, and transforms experiences. We develop intelligent lighting solutions that combine aesthetics, efficiency, and advanced control systems to create visually striking environments for residential, commercial, hospitality, and entertainment spaces.",
-    services: [
-      "Architectural Lighting Design",
-      "Decorative Lighting",
-      "Pixel-Mapped LED Systems",
-      "MADRIX Programming",
-      "DMX Lighting Control",
-      "Façade Lighting",
-      "Landscape Lighting",
-      "Lighting Consultation",
-    ],
   },
   {
     icon: MonitorPlay,
@@ -52,16 +34,6 @@ const services = [
     desc: "End-to-end AV integration projection, displays, distributed audio and control for boardrooms and venues.",
     overview:
       "Our integrated audio-visual solutions bring communication, presentation, and entertainment together through carefully engineered systems. From boardrooms and educational institutions to auditoriums and event venues, we deliver reliable AV installations that are intuitive to operate and designed for long-term performance.",
-    services: [
-      "Projection Systems",
-      "LED Video Walls",
-      "Conference Room AV",
-      "Distributed Audio Systems",
-      "Public Address Systems",
-      "Video Conferencing",
-      "Control & Automation",
-      "AV System Integration & Commissioning",
-    ],
   },
 ];
 
@@ -74,78 +46,101 @@ function getServiceId(title: string) {
 function ServiceCardItem({
   card,
   expanded,
+  anyExpanded,
   onToggle,
 }: {
   card: ServiceCard;
   expanded: boolean;
+  anyExpanded: boolean;
   onToggle: () => void;
 }) {
-  const { icon: Icon, title, tag, desc, overview, services } = card;
+  const { icon: Icon, title, tag, desc, overview } = card;
   const contentId = `${getServiceId(title)}-details`;
 
   return (
     <article
       role="button"
-      tabIndex={0}
+      tabIndex={expanded ? -1 : 0}
       aria-expanded={expanded}
       aria-controls={contentId}
-      onClick={onToggle}
-      onKeyDown={(event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
+      onClick={!expanded ? onToggle : undefined}
+      onKeyDown={(e) => {
+        if (!expanded && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
           onToggle();
         }
       }}
-      className={`group relative flex cursor-pointer flex-col overflow-hidden border border-border bg-ink-soft p-6 text-left transition-[flex-grow,flex-basis,padding,border-radius,border-color,transform] duration-[400ms] ease-in-out hover:border-primary focus-visible:border-primary focus-visible:outline-none lg:min-w-0 lg:self-start ${
+      className={`group relative flex flex-col overflow-hidden border bg-ink-soft text-left transition-all duration-500 ease-in-out focus-visible:outline-none ${
         expanded
-          ? "rounded-[20px] lg:flex-[2.25_1_0%] lg:p-7"
-          : "rounded-[18px] lg:flex-[1_1_0%]"
+          ? "rounded-[20px] border-primary p-8 lg:flex-[3_1_0%] cursor-default w-full opacity-100"
+          : anyExpanded
+          ? "w-0 h-0 p-0 border-0 opacity-0 pointer-events-none flex-[0_0_0%] overflow-hidden"
+          : "rounded-[18px] border-border p-6 hover:border-primary flex-1 lg:flex-[1_1_0%] w-full opacity-100"
       }`}
+      style={{
+        visibility: anyExpanded && !expanded ? "hidden" : "visible",
+      }}
     >
-      <div className="absolute right-4 top-4 h-2 w-2 bg-primary opacity-0 transition-opacity group-hover:opacity-100" />
-      <Icon className="h-8 w-8 text-primary" strokeWidth={1.5} />
-      <h3 className="mt-6 text-2xl font-bold">{title}</h3>
-      <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-primary/80">
-        {tag}
-      </p>
-      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+      {/* Top Left Close/Back Button when expanded */}
+      {expanded && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggle();
+          }}
+          className="absolute left-6 top-7 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-ink text-foreground transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground focus-visible:border-primary focus-visible:outline-none cursor-pointer"
+          aria-label="Go back"
+        >
+          <ArrowLeft className="h-4 w-4" />
+        </button>
+      )}
 
-      <div
-        id={contentId}
-        aria-hidden={!expanded}
-        className="grid overflow-hidden transition-[grid-template-rows,opacity,transform] duration-[400ms] ease-in-out"
-        style={{
-          opacity: expanded ? 1 : 0,
-          transform: expanded ? "translateY(0)" : "translateY(-6px)",
-          gridTemplateRows: expanded ? "1fr" : "0fr",
-        }}
-      >
-        <div className="min-h-0 overflow-hidden pt-5">
-          <div className="h-px w-full bg-border/70" />
+      {/* Hover dot for collapsed card */}
+      {!expanded && (
+        <div className="absolute right-4 top-4 h-2 w-2 bg-primary opacity-0 transition-opacity group-hover:opacity-100" />
+      )}
 
-          <div className="mt-5 grid gap-6 lg:grid-cols-2">
-            <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-primary/80">
-                Overview
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {overview}
-              </p>
-            </div>
+      {/* Main card layout that morphs between vertical and horizontal */}
+      <div className="flex flex-col lg:flex-row lg:items-start gap-6 w-full transition-all duration-500">
+        {/* Left Column (Header / Identity) */}
+        <div
+          className={`flex flex-col transition-all duration-500 ${
+            expanded ? "lg:w-[35%] lg:shrink-0 lg:pl-12" : "lg:w-full w-full"
+          }`}
+        >
+          <Icon className="h-8 w-8 text-primary transition-all duration-300" strokeWidth={1.5} />
+          <h3 className={`mt-6 font-bold transition-all duration-300 ${expanded ? "text-3xl" : "text-2xl"}`}>
+            {title}
+          </h3>
+          <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-primary/80">
+            {tag}
+          </p>
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            {desc}
+          </p>
+        </div>
 
-            <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-primary/80">
-                Services
-              </p>
-              <ul className="mt-3 grid gap-x-6 gap-y-2 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2">
-                {services.map((service) => (
-                  <li key={service} className="flex items-start gap-3">
-                    <Check className="mt-1.5 h-3.5 w-3.5 shrink-0 text-primary" strokeWidth={2.5} />
-                    <span>{service}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* Right Column (Overview / Details) - Fade in and expand height/width when expanded */}
+        <div
+          id={contentId}
+          aria-hidden={!expanded}
+          className={`grid overflow-hidden transition-all ease-in-out ${
+            expanded
+              ? "opacity-100 duration-300 delay-200 lg:w-[65%] lg:shrink-0"
+              : "opacity-0 duration-200 delay-0 pointer-events-none lg:w-0 lg:h-0"
+          }`}
+          style={{
+            gridTemplateRows: expanded ? "1fr" : "0fr",
+            transform: expanded ? "translateY(0)" : "translateY(10px)",
+          }}
+        >
+          <div className="min-h-0 pt-1 lg:pt-0">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-primary/80">
+              Overview
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {overview}
+            </p>
           </div>
         </div>
       </div>
@@ -206,7 +201,6 @@ function Home() {
             </Link>
           </div>
         </div>
-
       </section>
 
       {/* SERVICES */}
@@ -225,19 +219,27 @@ function Home() {
                 acoustics, lighting and AV in your space actually agree with each other.
               </p>
             </div>
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
-              {services.map((card) => (
-                <ServiceCardItem
-                  key={card.title}
-                  card={card}
-                  expanded={expandedService === card.title}
-                  onToggle={() => {
-                    setExpandedService((currentExpanded) =>
-                      currentExpanded === card.title ? null : card.title,
-                    );
-                  }}
-                />
-              ))}
+            <div className="flex flex-col gap-4">
+              {/* Card row — all cards same height via items-stretch */}
+              <div
+                className={`flex flex-col lg:flex-row lg:items-stretch transition-all duration-500 ${
+                  expandedService ? "gap-0" : "gap-4"
+                }`}
+              >
+                {services.map((card) => (
+                  <ServiceCardItem
+                    key={card.title}
+                    card={card}
+                    expanded={expandedService === card.title}
+                    anyExpanded={!!expandedService}
+                    onToggle={() =>
+                      setExpandedService((cur) =>
+                        cur === card.title ? null : card.title,
+                      )
+                    }
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -251,7 +253,9 @@ function Home() {
             / Let's build
           </span>
           <h2 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
-            Have a space that needs to <span className="text-primary">sound right</span> and <span className="text-primary">look right</span>?
+            Have a space that needs to{" "}
+            <span className="text-primary">sound right</span> and{" "}
+            <span className="text-primary">look right</span>?
           </h2>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
