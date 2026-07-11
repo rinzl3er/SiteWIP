@@ -3,6 +3,8 @@ import { ArrowLeft, ArrowRight, Lightbulb, MonitorPlay, Volume2 } from "lucide-r
 import { useState } from "react";
 
 import { SiteLayout } from "@/components/site-layout";
+import { motion } from "framer-motion";
+import { revealProps, staggerContainer, staggerItem } from "@/lib/motion";
 // Images are served from `public/assets` — reference them by public paths
 const hero = "/assets/hero.jpg";
 
@@ -58,7 +60,8 @@ function ServiceCardItem({
   const contentId = `${getServiceId(title)}-details`;
 
   return (
-    <article
+    <motion.article
+      {...staggerItem}
       role="button"
       tabIndex={expanded ? -1 : 0}
       aria-expanded={expanded}
@@ -143,7 +146,7 @@ function ServiceCardItem({
           </div>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -166,25 +169,25 @@ function Home() {
           <div className="grid-lines absolute inset-0 opacity-40" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 sm:px-6 lg:px-8 lg:pb-32 lg:pt-28">
-          <div data-reveal className="flex items-center gap-3">
+          <motion.div {...revealProps} className="flex items-center gap-3">
             <span className="h-px w-12 bg-primary" />
             <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
               Design · Consultancy · Execution
             </span>
-          </div>
-          <h1 data-reveal className="mt-8 max-w-5xl text-5xl font-black leading-[0.9] tracking-tight sm:text-7xl lg:text-[8.5rem]">
+          </motion.div>
+          <motion.h1 {...revealProps} className="mt-8 max-w-5xl text-5xl font-black leading-[0.9] tracking-tight sm:text-7xl lg:text-[8.5rem]">
             Acoustics.
             <br />
             <span className="text-stroke-yellow">Lighting.</span>
             <br />
             <span className="text-primary">Visuals.</span>
-          </h1>
-          <p data-reveal className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          </motion.h1>
+          <motion.p {...revealProps} className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Sound you can feel. Light you can shape. Systems that just work.
             Chintan Patel builds acoustic, lighting and AV environments end-to-end
             from the first drawing to the final commissioning.
-          </p>
-          <div data-reveal className="mt-10 flex flex-wrap items-center gap-4">
+          </motion.p>
+          <motion.div {...revealProps} className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               to="/projects"
               className="group inline-flex items-center gap-3 border-2 border-primary bg-primary px-6 py-3.5 font-mono text-xs uppercase tracking-[0.2em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
@@ -198,7 +201,7 @@ function Home() {
             >
               Start a brief
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -206,7 +209,7 @@ function Home() {
       <section className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_2fr] lg:gap-16">
-            <div data-reveal>
+            <motion.div {...revealProps}>
               <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
                 / What we do
               </span>
@@ -217,11 +220,11 @@ function Home() {
                 A single point of accountability from concept to commissioning — so the
                 acoustics, lighting and AV in your space actually agree with each other.
               </p>
-            </div>
+            </motion.div>
             <div className="flex flex-col gap-4">
               {/* Card row — all cards same height via items-stretch */}
-              <div
-                data-reveal-stagger
+              <motion.div
+                {...staggerContainer}
                 className={`flex flex-col lg:flex-row lg:items-stretch transition-all duration-500 ${expandedService ? "gap-0" : "gap-4"
                   }`}
                 style={{ overflowAnchor: "none" }}
@@ -239,7 +242,7 @@ function Home() {
                     }
                   />
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -248,7 +251,7 @@ function Home() {
       {/* CTA */}
       <section className="relative overflow-hidden py-24">
         <div className="grid-lines absolute inset-0 opacity-30" />
-        <div data-reveal className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <motion.div {...revealProps} className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
             / Let's build
           </span>
@@ -272,7 +275,7 @@ function Home() {
               or call +91 98191 80642
             </a>
           </div>
-        </div>
+        </motion.div>
       </section>
     </SiteLayout>
   );

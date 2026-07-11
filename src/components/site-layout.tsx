@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState, useEffect, type ReactNode } from "react";
 import { Menu, X, Instagram, Facebook, Youtube, Phone, Mail } from "lucide-react";
-import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { motion } from "framer-motion";
+import { revealProps } from "@/lib/motion";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -195,7 +196,7 @@ function Footer() {
 }
 
 export function SiteLayout({ children }: { children: ReactNode }) {
-  useScrollReveal();
+
   return (
     <div className="page-transition flex min-h-screen flex-col">
       <Header />
@@ -219,19 +220,19 @@ export function PageHeader({
       <div className="grid-lines absolute inset-0 opacity-60" />
       <div className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div data-reveal className="flex items-center gap-3">
+        <motion.div {...revealProps} className="flex items-center gap-3">
           <span className="h-px w-10 bg-primary" />
           <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
             {eyebrow}
           </span>
-        </div>
-        <h1 data-reveal className="mt-6 text-4xl font-black leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+        </motion.div>
+        <motion.h1 {...revealProps} className="mt-6 text-4xl font-black leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
           {title}
-        </h1>
+        </motion.h1>
         {intro && (
-          <p data-reveal className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <motion.p {...revealProps} className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {intro}
-          </p>
+          </motion.p>
         )}
       </div>
     </section>

@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout, PageHeader } from "@/components/site-layout";
+import { motion } from "framer-motion";
+import { revealProps, staggerContainer, staggerItem } from "@/lib/motion";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -44,7 +46,7 @@ function About() {
 
       <section className="py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div data-reveal>
+          <motion.div {...revealProps}>
             <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
               / Practice
             </span>
@@ -68,21 +70,21 @@ function About() {
                 acoustic and AV work.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div data-reveal className="border border-border bg-ink-soft p-8 sm:p-10">
+          <motion.div {...revealProps} className="border border-border bg-ink-soft p-8 sm:p-10">
             <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
               / Capabilities
             </h3>
-            <ul data-reveal-stagger className="mt-6 grid gap-3 sm:grid-cols-2">
+            <motion.ul {...staggerContainer} className="mt-6 grid gap-3 sm:grid-cols-2">
               {capabilities.map((c) => (
-                <li key={c} className="flex items-start gap-3 text-sm text-foreground">
+                <motion.li {...staggerItem} key={c} className="flex items-start gap-3 text-sm text-foreground">
                   <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
                   <span>{c}</span>
-                </li>
+                </motion.li>
               ))}
-            </ul>
-          </div>
+            </motion.ul>
+          </motion.div>
         </div>
       </section>
 
@@ -91,14 +93,14 @@ function About() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* Eyebrow */}
-          <span data-reveal className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
+          <motion.span {...revealProps} className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
             / Meet the Founder
-          </span>
+          </motion.span>
 
           <div className="mt-10 grid gap-12 lg:grid-cols-[420px_1fr] lg:gap-16 lg:items-start">
 
             {/* Photo card with gradient overlay */}
-            <div data-reveal className="group relative overflow-hidden rounded-2xl border border-primary/30 shadow-[0_24px_70px_rgba(0,0,0,0.55)]">
+            <motion.div {...revealProps} className="group relative overflow-hidden rounded-2xl border border-primary/30 shadow-[0_24px_70px_rgba(0,0,0,0.55)]">
               <img
                 src="/assets/Chintanportrait.jpg"
                 alt="Chintan Patel portrait"
@@ -113,14 +115,14 @@ function About() {
                   Founder &amp; Principal Consultant
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right side content */}
             <div className="flex flex-col gap-10">
 
               {/* Bio blocks */}
-              <div data-reveal-stagger className="grid gap-8 sm:grid-cols-2">
-                <div>
+              <motion.div {...staggerContainer} className="grid gap-8 sm:grid-cols-2">
+                <motion.div {...staggerItem}>
                   <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-primary/80">
                     Introduction
                   </p>
@@ -130,9 +132,9 @@ function About() {
                     A one-stop consultant for audio/video, lighting design and acoustic
                     works across a wide range of projects.
                   </p>
-                </div>
+                </motion.div>
 
-                <div>
+                <motion.div {...staggerItem}>
                   <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-primary/80">
                     Design Philosophy
                   </p>
@@ -142,9 +144,9 @@ function About() {
                     architects, manufacturers and installation teams to achieve seamless
                     integration of technologies.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="sm:col-span-2">
+                <motion.div {...staggerItem} className="sm:col-span-2">
                   <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-primary/80">
                     Industry Experience
                   </p>
@@ -154,11 +156,11 @@ function About() {
                     luxury homes moving between minimalist, rich ornate classic and
                     vibrant styles.
                   </p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
               {/* Domain tiles */}
-              <div data-reveal-stagger className="grid grid-cols-2 gap-3 xl:grid-cols-4">
+              <motion.div {...staggerContainer} className="grid grid-cols-2 gap-3 xl:grid-cols-4">
                 {[
                   {
                     label: "Acoustics",
@@ -177,7 +179,8 @@ function About() {
                     desc: "Software-driven pixel-mapped LED lighting control.",
                   },
                 ].map((tile) => (
-                  <div
+                  <motion.div
+                    {...staggerItem}
                     key={tile.label}
                     className="flex flex-col gap-2 rounded-xl border border-border bg-ink-soft p-5 transition-colors duration-300 hover:border-primary/50"
                   >
@@ -187,16 +190,16 @@ function About() {
                     <p className="text-xs leading-relaxed text-muted-foreground">
                       {tile.desc}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="py-24">
-        <div data-reveal className="mx-auto flex max-w-5xl flex-col items-start gap-8 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+        <motion.div {...revealProps} className="mx-auto flex max-w-5xl flex-col items-start gap-8 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <h2 className="text-3xl font-black sm:text-4xl">
             Bring us in early. <span className="text-primary">Save time later.</span>
           </h2>
@@ -207,7 +210,7 @@ function About() {
             Talk to us
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
-        </div>
+        </motion.div>
       </section>
     </SiteLayout>
   );

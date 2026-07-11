@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, Instagram, Facebook, Youtube, MessageCircle } from "lucide-react";
 import { SiteLayout, PageHeader } from "@/components/site-layout";
+import { motion } from "framer-motion";
+import { revealProps, staggerContainer, staggerItem } from "@/lib/motion";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -34,8 +36,9 @@ function Contact() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* Primary CTA row — Phone + WhatsApp + Email as large action cards */}
-          <div data-reveal-stagger className="grid gap-4 sm:grid-cols-3">
-            <a
+          <motion.div {...staggerContainer} className="grid gap-4 sm:grid-cols-3">
+            <motion.a
+              {...staggerItem}
               href="tel:+919819180642"
               className="group flex flex-col gap-4 border border-border bg-ink-soft p-7 transition-all duration-300 hover:border-primary hover:bg-ink"
             >
@@ -53,9 +56,10 @@ function Contact() {
                   Mon – Sat, 10 am – 7 pm IST
                 </p>
               </div>
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
+              {...staggerItem}
               href="https://wa.me/919819180642"
               target="_blank"
               rel="noopener noreferrer"
@@ -75,9 +79,10 @@ function Contact() {
                   Quick replies on WhatsApp
                 </p>
               </div>
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
+              {...staggerItem}
               href="mailto:info@chintanpatel.co.in"
               className="group flex flex-col gap-4 border border-border bg-ink-soft p-7 transition-all duration-300 hover:border-primary hover:bg-ink"
             >
@@ -95,11 +100,11 @@ function Contact() {
                   Contact us through Mail
                 </p>
               </div>
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
 
           {/* Second row — Location + Social */}
-          <div data-reveal className="mt-4 grid gap-4 sm:grid-cols-[1fr_auto]">
+          <motion.div {...revealProps} className="mt-4 grid gap-4 sm:grid-cols-[1fr_auto]">
 
             {/* Location */}
             <div className="flex flex-col gap-4 border border-border bg-ink-soft p-7 sm:flex-row sm:items-start sm:gap-8">
@@ -167,7 +172,7 @@ function Contact() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </section>

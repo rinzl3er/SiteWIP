@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHeader } from "@/components/site-layout";
+import { motion } from "framer-motion";
+import { revealProps, staggerContainer, staggerItem } from "@/lib/motion";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -194,31 +196,34 @@ function Projects() {
 
       {/* Navigation */}
       <section className="pb-10">
-        <div data-reveal-stagger className="mx-auto flex flex-wrap max-w-7xl justify-center gap-4 px-6">
-          <a
+        <motion.div {...staggerContainer} className="mx-auto flex flex-wrap max-w-7xl justify-center gap-4 px-6">
+          <motion.a
+            {...staggerItem}
             href="#videos"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
           >
             <span>🎥</span> <span>Video Gallery</span>
-          </a>
+          </motion.a>
 
-          <a
+          <motion.a
+            {...staggerItem}
             href="#images"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
           >
             <span>📷</span> <span>Image Gallery</span>
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </section>
 
       {/* Video Gallery */}
       <section id="videos" className="py-20">
         <div className="mx-auto max-w-[1700px] px-6">
-          <h2 data-reveal className="mb-8 text-3xl font-bold">Video Gallery</h2>
+          <motion.h2 {...revealProps} className="mb-8 text-3xl font-bold">Video Gallery</motion.h2>
 
-          <div data-reveal-stagger className="grid gap-8 lg:grid-cols-3">
+          <motion.div {...staggerContainer} className="grid gap-8 lg:grid-cols-3">
             {videos.map((video, index) => (
-              <div
+              <motion.div
+                {...staggerItem}
                 key={index}
                 className="overflow-hidden rounded-2xl border border-border shadow-lg"
               >
@@ -233,20 +238,21 @@ function Projects() {
                     allowFullScreen
                   />
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Image Gallery */}
       <section id="images" className="py-10">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 data-reveal className="mb-8 text-3xl font-bold">Image Gallery</h2>
+          <motion.h2 {...revealProps} className="mb-8 text-3xl font-bold">Image Gallery</motion.h2>
 
-          <div data-reveal-stagger className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <motion.div {...staggerContainer} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {images.map((project, index) => (
-              <div
+              <motion.div
+                {...staggerItem}
                 key={index}
                 className="group relative overflow-hidden rounded-xl shadow-lg"
               >
@@ -267,9 +273,9 @@ function Projects() {
                     📍 {project.location}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </SiteLayout>
