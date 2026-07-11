@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { Menu, X, Instagram, Facebook, Youtube, Phone, Mail } from "lucide-react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -36,9 +37,8 @@ function Header() {
                 <>
                   {item.label}
                   <span
-                    className={`absolute inset-x-4 -bottom-0.5 h-px origin-left bg-primary transition-transform ${
-                      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                    }`}
+                    className={`absolute inset-x-4 -bottom-0.5 h-px origin-left bg-primary transition-transform ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      }`}
                   />
                 </>
               )}
@@ -95,7 +95,7 @@ function Footer() {
         <div className="lg:col-span-1">
           <Logo large />
           <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Design, consultancy & execution for acoustics, architectural lighting and visual systems.
+            Design, consultancy &amp; execution for acoustics, architectural lighting and visual systems.
           </p>
         </div>
         <div className="lg:col-span-1">
@@ -107,7 +107,7 @@ function Footer() {
             />
           </a>
           <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Official dealer & consultant for MADRIX lighting control — pixel-mapped LED control supporting DMX512, DVI, and Art-Net.
+            Official dealer &amp; consultant for MADRIX lighting control software and pixel-mapped LED control supporting DMX512, DVI, and Art-Net.
           </p>
         </div>
         <div>
@@ -173,8 +173,9 @@ function Footer() {
 }
 
 export function SiteLayout({ children }: { children: ReactNode }) {
+  useScrollReveal();
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="page-transition flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
@@ -196,17 +197,17 @@ export function PageHeader({
       <div className="grid-lines absolute inset-0 opacity-60" />
       <div className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div className="flex items-center gap-3">
+        <div data-reveal className="flex items-center gap-3">
           <span className="h-px w-10 bg-primary" />
           <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
             {eyebrow}
           </span>
         </div>
-        <h1 className="mt-6 text-4xl font-black leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+        <h1 data-reveal className="mt-6 text-4xl font-black leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
           {title}
         </h1>
         {intro && (
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p data-reveal className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {intro}
           </p>
         )}

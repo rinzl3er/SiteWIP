@@ -44,7 +44,7 @@ function About() {
 
       <section className="py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div>
+          <div data-reveal>
             <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
               / Practice
             </span>
@@ -70,11 +70,11 @@ function About() {
             </div>
           </div>
 
-          <div className="border border-border bg-ink-soft p-8 sm:p-10">
+          <div data-reveal className="border border-border bg-ink-soft p-8 sm:p-10">
             <h3 className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
               / Capabilities
             </h3>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            <ul data-reveal-stagger className="mt-6 grid gap-3 sm:grid-cols-2">
               {capabilities.map((c) => (
                 <li key={c} className="flex items-start gap-3 text-sm text-foreground">
                   <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
@@ -91,14 +91,14 @@ function About() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* Eyebrow */}
-          <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
+          <span data-reveal className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
             / Meet the Founder
           </span>
 
           <div className="mt-10 grid gap-12 lg:grid-cols-[420px_1fr] lg:gap-16 lg:items-start">
 
             {/* Photo card with gradient overlay */}
-            <div className="group relative overflow-hidden rounded-2xl border border-primary/30 shadow-[0_24px_70px_rgba(0,0,0,0.55)]">
+            <div data-reveal className="group relative overflow-hidden rounded-2xl border border-primary/30 shadow-[0_24px_70px_rgba(0,0,0,0.55)]">
               <img
                 src="/assets/Chintanportrait.jpg"
                 alt="Chintan Patel portrait"
@@ -119,7 +119,7 @@ function About() {
             <div className="flex flex-col gap-10">
 
               {/* Bio blocks */}
-              <div className="grid gap-8 sm:grid-cols-2">
+              <div data-reveal-stagger className="grid gap-8 sm:grid-cols-2">
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-primary/80">
                     Introduction
@@ -151,14 +151,14 @@ function About() {
                   <div className="mt-3 h-px w-8 bg-primary/40" />
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                     Projects range from home theatres to restaurants, clubs, hotels and
-                    luxury homes — moving between minimalist, rich ornate classic and
+                    luxury homes moving between minimalist, rich ornate classic and
                     vibrant styles.
                   </p>
                 </div>
               </div>
 
               {/* Domain tiles */}
-              <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
+              <div data-reveal-stagger className="grid grid-cols-2 gap-3 xl:grid-cols-4">
                 {[
                   {
                     label: "Acoustics",
@@ -196,7 +196,7 @@ function About() {
       </section>
 
       <section className="py-24">
-        <div className="mx-auto flex max-w-5xl flex-col items-start gap-8 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+        <div data-reveal className="mx-auto flex max-w-5xl flex-col items-start gap-8 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <h2 className="text-3xl font-black sm:text-4xl">
             Bring us in early. <span className="text-primary">Save time later.</span>
           </h2>

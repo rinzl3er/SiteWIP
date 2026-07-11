@@ -34,7 +34,7 @@ function Contact() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* Primary CTA row — Phone + WhatsApp + Email as large action cards */}
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div data-reveal-stagger className="grid gap-4 sm:grid-cols-3">
             <a
               href="tel:+919819180642"
               className="group flex flex-col gap-4 border border-border bg-ink-soft p-7 transition-all duration-300 hover:border-primary hover:bg-ink"
@@ -99,7 +99,7 @@ function Contact() {
           </div>
 
           {/* Second row — Location + Social */}
-          <div className="mt-4 grid gap-4 sm:grid-cols-[1fr_auto]">
+          <div data-reveal className="mt-4 grid gap-4 sm:grid-cols-[1fr_auto]">
 
             {/* Location */}
             <div className="flex flex-col gap-4 border border-border bg-ink-soft p-7 sm:flex-row sm:items-start sm:gap-8">
@@ -124,7 +124,7 @@ function Contact() {
                 / Social
               </p>
               <div className="flex flex-col gap-3">
-                {[
+                {(([
                   {
                     href: "https://www.instagram.com/chintanpatel.co.in/",
                     Icon: Instagram,
@@ -136,7 +136,6 @@ function Contact() {
                     Icon: Facebook,
                     label: "Facebook",
                     handle: "Chintan Patel",
-
                   },
                   {
                     href: "https://www.youtube.com/channel/UCUjMzeydRapI-VFIPooVcjg",
@@ -144,7 +143,7 @@ function Contact() {
                     label: "YouTube",
                     handle: "Chintan Patel",
                   },
-                ].map(({ href, Icon, label, handle, note }) => (
+                ]) as Array<{ href: string; Icon: any; label: string; handle: string; note?: string }>).map(({ href, Icon, label, handle, note }) => (
                   <a
                     key={label}
                     href={href}

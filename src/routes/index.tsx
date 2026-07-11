@@ -167,25 +167,25 @@ function Home() {
           <div className="grid-lines absolute inset-0 opacity-40" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-20 sm:px-6 lg:px-8 lg:pb-32 lg:pt-28">
-          <div className="flex items-center gap-3">
+          <div data-reveal className="flex items-center gap-3">
             <span className="h-px w-12 bg-primary" />
             <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
               Design · Consultancy · Execution
             </span>
           </div>
-          <h1 className="mt-8 max-w-5xl text-5xl font-black leading-[0.9] tracking-tight sm:text-7xl lg:text-[8.5rem]">
+          <h1 data-reveal className="mt-8 max-w-5xl text-5xl font-black leading-[0.9] tracking-tight sm:text-7xl lg:text-[8.5rem]">
             Acoustics.
             <br />
             <span className="text-stroke-yellow">Lighting.</span>
             <br />
             <span className="text-primary">Visuals.</span>
           </h1>
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p data-reveal className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Sound you can feel. Light you can shape. Systems that just work.
             Chintan Patel builds acoustic, lighting and AV environments end-to-end
             from the first drawing to the final commissioning.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <div data-reveal className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               to="/projects"
               className="group inline-flex items-center gap-3 border-2 border-primary bg-primary px-6 py-3.5 font-mono text-xs uppercase tracking-[0.2em] text-primary-foreground transition-colors hover:bg-transparent hover:text-primary"
@@ -207,7 +207,7 @@ function Home() {
       <section className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_2fr] lg:gap-16">
-            <div>
+            <div data-reveal>
               <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
                 / What we do
               </span>
@@ -222,6 +222,7 @@ function Home() {
             <div className="flex flex-col gap-4">
               {/* Card row — all cards same height via items-stretch */}
               <div
+                data-reveal-stagger
                 className={`flex flex-col lg:flex-row lg:items-stretch transition-all duration-500 ${
                   expandedService ? "gap-0" : "gap-4"
                 }`}
@@ -248,7 +249,7 @@ function Home() {
       {/* CTA */}
       <section className="relative overflow-hidden py-24">
         <div className="grid-lines absolute inset-0 opacity-30" />
-        <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div data-reveal className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
             / Let's build
           </span>

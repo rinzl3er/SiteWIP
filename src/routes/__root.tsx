@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -128,12 +129,19 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+/** Replays the page-in CSS animation on every route change by keying on pathname. */
+function AnimatedPage() {
+  const { pathname } = useLocation();
+  return <Outlet key={pathname} />;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <AnimatedPage />
     </QueryClientProvider>
   );
 }
+
