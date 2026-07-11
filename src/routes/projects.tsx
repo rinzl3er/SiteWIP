@@ -249,10 +249,13 @@ function Projects() {
         <div className="mx-auto max-w-7xl px-6">
           <motion.h2 {...revealProps} className="mb-8 text-3xl font-bold">Image Gallery</motion.h2>
 
-          <motion.div {...staggerContainer} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {images.map((project, index) => (
               <motion.div
-                {...staggerItem}
+                initial={revealProps.initial}
+                whileInView={revealProps.whileInView}
+                viewport={revealProps.viewport}
+                transition={{ ...revealProps.transition, delay: index * 0.03 }}
                 key={index}
                 className="group relative overflow-hidden rounded-xl shadow-lg"
               >
@@ -262,9 +265,9 @@ function Projects() {
                   className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 transition-all duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 transition-all duration-300 group-hover:opacity-100" />
 
-                <div className="absolute bottom-0 left-0 translate-y-6 p-5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="absolute bottom-0 left-0 translate-y-6 p-5 opacity-100 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <h3 className="text-lg font-semibold text-white">
                     {project.venue}
                   </h3>
@@ -275,7 +278,7 @@ function Projects() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
     </SiteLayout>
