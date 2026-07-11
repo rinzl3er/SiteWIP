@@ -126,7 +126,7 @@ function About() {
                   </p>
                   <div className="mt-3 h-px w-8 bg-primary/40" />
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    Electrical engineer with experience in acoustics, sound and lighting.
+                    Chintan is an electrical engineer with experience in acoustics, sound and lighting.
                     A one-stop consultant for audio/video, lighting design and acoustic
                     works across a wide range of projects.
                   </p>
@@ -138,7 +138,7 @@ function About() {
                   </p>
                   <div className="mt-3 h-px w-8 bg-primary/40" />
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    Balancing detail, character and fundamentals — working closely with
+                    He balances detail, character and fundamentals — working closely with
                     architects, manufacturers and installation teams to achieve seamless
                     integration of technologies.
                   </p>
@@ -150,7 +150,7 @@ function About() {
                   </p>
                   <div className="mt-3 h-px w-8 bg-primary/40" />
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    Projects range from home theatres to restaurants, clubs, hotels and
+                    His projects range from home theatres to restaurants, clubs, hotels and
                     luxury homes moving between minimalist, rich ornate classic and
                     vibrant styles.
                   </p>

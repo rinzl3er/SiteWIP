@@ -194,19 +194,19 @@ function Projects() {
 
       {/* Navigation */}
       <section className="pb-10">
-        <div data-reveal-stagger className="mx-auto flex max-w-7xl justify-center gap-4 px-6">
+        <div data-reveal-stagger className="mx-auto flex flex-wrap max-w-7xl justify-center gap-4 px-6">
           <a
             href="#videos"
-            className="rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
           >
-            🎥 Video Gallery
+            <span>🎥</span> <span>Video Gallery</span>
           </a>
 
           <a
             href="#images"
-            className="rounded-full border border-border px-6 py-3 font-medium transition hover:bg-muted"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
           >
-            📷 Image Gallery
+            <span>📷</span> <span>Image Gallery</span>
           </a>
         </div>
       </section>

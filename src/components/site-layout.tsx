@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { Menu, X, Instagram, Facebook, Youtube, Phone, Mail } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
@@ -19,8 +19,26 @@ function Logo({ large = false }: { large?: boolean }) {
   );
 }
 
+function useDelayedUnmount(isMounted: boolean, delayTime: number) {
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (isMounted && !shouldRender) {
+      setShouldRender(true);
+    } else if (!isMounted && shouldRender) {
+      timeoutId = setTimeout(() => setShouldRender(false), delayTime);
+    }
+    return () => clearTimeout(timeoutId);
+  }, [isMounted, delayTime, shouldRender]);
+  
+  return shouldRender;
+}
+
 function Header() {
   const [open, setOpen] = useState(false);
+  const shouldRenderMenu = useDelayedUnmount(open, 300);
+
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-5 sm:px-6 lg:px-8">
@@ -60,8 +78,12 @@ function Header() {
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
-      {open && (
-        <div className="border-t border-border/60 bg-ink md:hidden">
+      {shouldRenderMenu && (
+        <div 
+          className={`border-t border-border/60 bg-ink md:hidden transition-all duration-300 ease-out will-change-transform
+            ${open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3"}
+          `}
+        >
           <nav className="mx-auto flex max-w-7xl flex-col px-4 py-2 sm:px-6">
             {nav.map((item) => (
               <Link

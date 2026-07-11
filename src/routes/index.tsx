@@ -63,6 +63,7 @@ function ServiceCardItem({
       tabIndex={expanded ? -1 : 0}
       aria-expanded={expanded}
       aria-controls={contentId}
+      onMouseDown={(e) => e.preventDefault()} // Prevents focus-related auto-scrolling on click
       onClick={!expanded ? onToggle : undefined}
       onKeyDown={(e) => {
         if (!expanded && (e.key === "Enter" || e.key === " ")) {
@@ -70,15 +71,15 @@ function ServiceCardItem({
           onToggle();
         }
       }}
-      className={`group relative flex flex-col overflow-hidden border bg-ink-soft text-left transition-all duration-500 ease-in-out focus-visible:outline-none ${
-        expanded
+      className={`group relative flex flex-col overflow-hidden border bg-ink-soft text-left transition-all duration-500 ease-in-out focus-visible:outline-none ${expanded
           ? "rounded-[20px] border-primary p-8 lg:flex-[3_1_0%] cursor-default w-full opacity-100"
           : anyExpanded
-          ? "w-0 h-0 p-0 border-0 opacity-0 pointer-events-none flex-[0_0_0%] overflow-hidden"
-          : "rounded-[18px] border-border p-6 hover:border-primary flex-1 lg:flex-[1_1_0%] w-full opacity-100"
-      }`}
+            ? "w-0 h-0 p-0 border-0 opacity-0 pointer-events-none flex-[0_0_0%] overflow-hidden"
+            : "rounded-[18px] border-border p-6 hover:border-primary flex-1 lg:flex-[1_1_0%] w-full opacity-100"
+        }`}
       style={{
         visibility: anyExpanded && !expanded ? "hidden" : "visible",
+        overflowAnchor: "none",
       }}
     >
       {/* Top Left Close/Back Button when expanded */}
@@ -104,9 +105,8 @@ function ServiceCardItem({
       <div className="flex flex-col lg:flex-row lg:items-start gap-6 w-full transition-all duration-500">
         {/* Left Column (Header / Identity) */}
         <div
-          className={`flex flex-col transition-all duration-500 ${
-            expanded ? "lg:w-[35%] lg:shrink-0 lg:pl-12" : "lg:w-full w-full"
-          }`}
+          className={`flex flex-col transition-all duration-500 ${expanded ? "lg:w-[35%] lg:shrink-0 lg:pl-12" : "lg:w-full w-full"
+            }`}
         >
           <Icon className="h-8 w-8 text-primary transition-all duration-300" strokeWidth={1.5} />
           <h3 className={`mt-6 font-bold transition-all duration-300 ${expanded ? "text-3xl" : "text-2xl"}`}>
@@ -124,11 +124,10 @@ function ServiceCardItem({
         <div
           id={contentId}
           aria-hidden={!expanded}
-          className={`grid overflow-hidden transition-all ease-in-out ${
-            expanded
+          className={`grid overflow-hidden transition-all ease-in-out ${expanded
               ? "opacity-100 duration-300 delay-200 lg:w-[65%] lg:shrink-0"
               : "opacity-0 duration-200 delay-0 pointer-events-none lg:w-0 lg:h-0"
-          }`}
+            }`}
           style={{
             gridTemplateRows: expanded ? "1fr" : "0fr",
             transform: expanded ? "translateY(0)" : "translateY(10px)",
@@ -223,9 +222,9 @@ function Home() {
               {/* Card row — all cards same height via items-stretch */}
               <div
                 data-reveal-stagger
-                className={`flex flex-col lg:flex-row lg:items-stretch transition-all duration-500 ${
-                  expandedService ? "gap-0" : "gap-4"
-                }`}
+                className={`flex flex-col lg:flex-row lg:items-stretch transition-all duration-500 ${expandedService ? "gap-0" : "gap-4"
+                  }`}
+                style={{ overflowAnchor: "none" }}
               >
                 {services.map((card) => (
                   <ServiceCardItem
